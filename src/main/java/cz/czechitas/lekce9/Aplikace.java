@@ -12,9 +12,13 @@ public class Aplikace extends JFrame {
     private JLabel jmenoLabel;
     private JLabel prijmeniLabel;
     private JLabel adresaLabel;
+    private JLabel emailLabel;
+    private JLabel telefonLabel;
     private JTextField jmenoField;
     private JTextField prijmeniField;
     private JTextField adresaField;
+    private JTextField emailField;
+    private JTextField telefonField;
 
     private JCheckBox pracovniCheckbox;
 
@@ -58,6 +62,20 @@ public class Aplikace extends JFrame {
         add(prijmeniLabel);
         add(prijmeniField);
 
+        emailField = new JTextField();
+        emailLabel = new JLabel("E-mail");
+        emailLabel.setDisplayedMnemonic('E');
+        emailLabel.setLabelFor(emailField);
+        add(emailLabel);
+        add(emailField);
+
+        telefonField = new JTextField();
+        telefonLabel = new JLabel("Telefon");
+        telefonLabel.setDisplayedMnemonic('T');
+        telefonLabel.setLabelFor(telefonField);
+        add(telefonLabel);
+        add(telefonField);
+
         adresaField = new JTextField();
         adresaLabel = new JLabel("Adresa");
         adresaLabel.setDisplayedMnemonic('A');
@@ -78,6 +96,7 @@ public class Aplikace extends JFrame {
         getRootPane().setDefaultButton(ulozitButton);
 
         ulozitButton.addActionListener(this::handleUlozit);
+        smazatButton.addActionListener(this::handleSmazat);
     }
 
     private JPanel createGenderPanel() {
@@ -116,6 +135,8 @@ public class Aplikace extends JFrame {
         System.out.println("Ukládám kontakt:");
         System.out.printf("Jméno: %s", jmenoField.getText()).println();
         System.out.printf("Příjmení: %s", prijmeniField.getText()).println();
+        System.out.printf("E-mail: %s", emailField.getText()).println();
+        System.out.printf("Telefon: %s", telefonField.getText()).println();
         System.out.printf("Adresa: %s", adresaField.getText()).println();
         if (zenaRadioButton.isSelected()) {
             System.out.println("žena");
@@ -124,6 +145,10 @@ public class Aplikace extends JFrame {
             System.out.println("muž");
         }
         System.out.printf("Pracovní kontakt: %s", pracovniCheckbox.isSelected() ? "ano" : "ne").println();
+    }
+
+    private void handleSmazat(ActionEvent actionEvent) {
+        System.out.printf("Mažu kontakt %s %s", jmenoField.getText(), prijmeniField.getText()).println();
     }
 
 
